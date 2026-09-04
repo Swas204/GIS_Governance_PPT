@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corporate Governance &amp; Social Responsibility in Investment Decisions — GIS CIA III</title>
+<style>
+:root{
+  --page:#eef0ee; --card:#fff;
+  --ink:#0b0b0b; --ink-2:#52514e; --ink-3:#8b8a84;
+  --hair:rgba(11,11,11,.10); --hair-2:rgba(11,11,11,.055);
+  --blue:#2a78d6; --blue-d:#184f95; --blue-l:#86b6ef; --blue-t:#e8f1fd;
+  --red:#d03b3b; --red-t:#fdecea;
+  --green:#0d7a2e; --green-t:#e8f6ec;
+  --amber:#b57a06; --amber-t:#fdf3e0;
+  --sh:0 1px 2px rgba(11,11,11,.05), 0 10px 28px -14px rgba(11,11,11,.18);
+  --sh-hi:0 2px 6px rgba(11,11,11,.07), 0 18px 40px -16px rgba(11,11,11,.28);
+  --font:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:#d7d9d7}
+body{font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+
+#stage{position:absolute;top:50%;left:50%;width:1280px;height:720px;
+  transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center center;
+  box-shadow:0 34px 100px -34px rgba(0,0,0,.5);border-radius:4px;overflow:hidden}
+.slide{position:absolute;inset:0;background:var(--page);padding:38px 56px 52px;
+  display:flex;flex-direction:column;opacity:0;visibility:hidden;
+  transition:opacity .3s ease,visibility .3s}
+.slide.on{opacity:1;visibility:visible}
+
+.anim{opacity:0;transform:translateY(14px)}
+.slide.on .anim{animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+@keyframes rise{to{opacity:1;transform:none}}
+.slide.settled .anim{opacity:1;transform:none;animation:none}
+.slide.on .d1{animation-delay:.05s}.slide.on .d2{animation-delay:.11s}
+.slide.on .d3{animation-delay:.17s}.slide.on .d4{animation-delay:.23s}
+.slide.on .d5{animation-delay:.29s}.slide.on .d6{animation-delay:.35s}
+.slide.on .d7{animation-delay:.41s}.slide.on .d8{animation-delay:.47s}
+
+.rail{display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:11px;border-bottom:1px solid var(--hair);margin-bottom:20px}
+.rail .sec{display:flex;align-items:center;gap:10px;font-size:10.5px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.rail .sec i{width:16px;height:3px;background:var(--blue);border-radius:2px}
+.rail .num{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+h1{font-size:33px;line-height:1.13;font-weight:800;letter-spacing:-.028em}
+h1 .hl{color:var(--blue)}
+.sub{font-size:14px;color:var(--ink-3);margin-top:7px;line-height:1.45}
+.head{margin-bottom:20px}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0}
+.foot{margin-top:18px}
+.card{background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+em{font-style:normal;font-weight:700;color:var(--ink)}
+.note{border-radius:11px;padding:14px 17px;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.note b{color:var(--ink);font-weight:700}
+.note.blue{background:var(--blue-t);border:1px solid rgba(42,120,214,.22)}
+.note.red{background:var(--red-t);border:1px solid rgba(208,59,59,.22)}
+.note.green{background:var(--green-t);border:1px solid rgba(13,122,46,.22)}
+.tapcue{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue);display:inline-flex;align-items:center;gap:6px}
+.tapcue:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);
+  animation:pulse 1.9s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.def{background:var(--card);border:1px solid var(--hair);border-left:4px solid var(--blue);
+  border-radius:11px;padding:15px 19px;box-shadow:var(--sh)}
+.def .dk{font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.def .dv{font-size:16px;line-height:1.5;margin-top:7px;font-weight:600}
+
+/* ============ 1 TITLE ============ */
+.t1{padding:0;flex-direction:row}
+.t1 .left{flex:1.3;padding:58px 50px 44px 56px;display:flex;flex-direction:column}
+.t1 .right{flex:1;background:linear-gradient(160deg,#2a78d6,#184f95);color:#fff;
+  padding:58px 40px 44px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.t1 .right:after{content:"";position:absolute;right:-100px;bottom:-100px;width:300px;height:300px;
+  border-radius:50%;background:rgba(255,255,255,.08)}
+.t1 .right:before{content:"";position:absolute;right:70px;top:-80px;width:170px;height:170px;
+  border-radius:50%;background:rgba(255,255,255,.06)}
+.t1 .eyebrow{font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;color:var(--blue)}
+.t1 h1{font-size:50px;line-height:1.07;margin-top:20px;letter-spacing:-.033em}
+.t1 .bar{width:64px;height:4px;background:var(--blue);border-radius:3px;margin:24px 0 20px}
+.t1 .lede{font-size:19px;color:var(--ink-2);line-height:1.45}
+.t1 .course{margin-top:auto;font-size:12px;color:var(--ink-3);padding-top:18px;border-top:1px solid var(--hair)}
+.t1 .rlabel{font-size:10.5px;font-weight:800;letter-spacing:.17em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);position:relative;z-index:1}
+.t1 .names{margin-top:18px;position:relative;z-index:1}
+.t1 .names div{font-size:17px;font-weight:600;padding:9px 12px;border-radius:8px;
+  border-bottom:1px solid rgba(255,255,255,.16);transition:background .18s,padding-left .18s}
+.t1 .names div:hover{background:rgba(255,255,255,.14);padding-left:20px}
+.t1 .names div:last-child{border-bottom:none}
+.t1 .stamp{margin-top:auto;font-size:12px;color:rgba(255,255,255,.82);position:relative;z-index:1}
+
+/* ============ 2 ACTORS ============ */
+.actors{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr;align-items:stretch;gap:0}
+.actor{background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh);
+  padding:18px 18px;cursor:pointer;text-align:left;transition:.2s;border-top:4px solid var(--blue)}
+.actor:hover{transform:translateY(-4px);box-shadow:var(--sh-hi)}
+.actor.sel{border-color:var(--blue);box-shadow:0 0 0 2px rgba(42,120,214,.3),var(--sh-hi);
+  transform:translateY(-4px)}
+.actor .ico{width:34px;height:34px;border-radius:10px;background:var(--blue-t);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800}
+.actor h4{font-size:16.5px;font-weight:800;margin-top:12px;letter-spacing:-.01em}
+.actor p{font-size:12.5px;line-height:1.5;color:var(--ink-2);margin-top:8px}
+.arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.arrow .lb{font-size:8.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);white-space:nowrap}
+.arrow .ln{font-size:19px;color:var(--blue-l);line-height:1}
+#actorOut{margin-top:15px;border-radius:12px;padding:15px 19px;display:flex;gap:22px;
+  align-items:center;min-height:76px;transition:background .25s,border-color .25s}
+#actorOut .who{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  flex:none;width:172px}
+#actorOut .txt{font-size:13px;line-height:1.5;color:var(--ink-2)}
+#actorOut .txt b{color:var(--ink);font-weight:700}
+
+/* ============ 3 PILLARS ============ */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pil{border-radius:12px;box-shadow:var(--sh);padding:20px;cursor:pointer;text-align:left;
+  border:1px solid var(--hair);background:var(--card);transition:.2s;min-height:196px;
+  display:flex;flex-direction:column}
+.pil:hover{transform:translateY(-4px);box-shadow:var(--sh-hi)}
+.pil .letter{font-size:44px;font-weight:800;line-height:1;letter-spacing:-.04em}
+.pil h3{font-size:17px;font-weight:800;margin-top:6px}
+.pil ul{list-style:none;margin-top:12px}
+.pil li{font-size:12.5px;color:var(--ink-2);line-height:1.5;padding-left:14px;position:relative;
+  margin-bottom:4px}
+.pil li:before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%}
+.pil.e .letter{color:var(--green)} .pil.e li:before{background:var(--green)}
+.pil.s .letter{color:var(--amber)} .pil.s li:before{background:var(--amber)}
+.pil.g .letter{color:var(--blue)} .pil.g li:before{background:var(--blue)}
+.pil.sel.e{border-color:var(--green);box-shadow:0 0 0 2px rgba(13,122,46,.28),var(--sh-hi);transform:translateY(-4px)}
+.pil.sel.s{border-color:var(--amber);box-shadow:0 0 0 2px rgba(181,122,6,.28),var(--sh-hi);transform:translateY(-4px)}
+.pil.sel.g{border-color:var(--blue);box-shadow:0 0 0 2px rgba(42,120,214,.28),var(--sh-hi);transform:translateY(-4px)}
+.pil .tagx{margin-top:auto;padding-top:11px;font-size:10px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+
+/* ============ 4 LIVE MODEL ============ */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:14px}
+.chip{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--blue);
+  border-radius:9px;padding:11px 13px;box-shadow:var(--sh);transition:transform .18s}
+.chip:hover{transform:translateY(-3px)}
+.chip .l{font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--blue);font-weight:800}
+.chip .t{font-size:11.5px;color:var(--ink-2);margin-top:5px;line-height:1.4}
+.s4{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:stretch}
+.safelist{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-content:start}
+.safe{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:12px 13px;
+  cursor:pointer;text-align:left;transition:.2s;box-shadow:0 1px 2px rgba(11,11,11,.04);position:relative}
+.safe:hover{border-color:var(--blue);transform:translateY(-2px)}
+.safe .tog{position:absolute;right:11px;top:11px;width:30px;height:17px;border-radius:20px;
+  background:var(--green);transition:background .25s}
+.safe .tog:after{content:"";position:absolute;top:2.5px;left:15px;width:12px;height:12px;
+  border-radius:50%;background:#fff;transition:left .25s}
+.safe h5{font-size:12.5px;font-weight:800;padding-right:38px}
+.safe p{font-size:10.5px;color:var(--ink-3);margin-top:4px;line-height:1.35;padding-right:34px}
+.safe.off{background:var(--red-t);border-color:rgba(208,59,59,.35)}
+.safe.off .tog{background:#c9ccc9} .safe.off .tog:after{left:2.5px}
+.safe.off h5{color:var(--red);text-decoration:line-through;text-decoration-thickness:1.5px}
+.meter{background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh);
+  padding:18px 20px;display:flex;flex-direction:column}
+.meter .mt{font-size:10.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.meter .score{font-size:50px;font-weight:800;letter-spacing:-.04em;line-height:1;margin-top:6px;
+  color:var(--green);font-variant-numeric:tabular-nums;transition:color .3s}
+.meter .score span{font-size:19px;color:var(--ink-3);font-weight:700}
+.gtrack{height:11px;background:#eceeed;border-radius:3px;overflow:hidden;margin-top:12px}
+.gfill{height:100%;background:var(--green);border-radius:0 4px 4px 0;
+  transition:width .45s cubic-bezier(.2,.7,.3,1),background .3s}
+.mstats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.mstat{background:#f6f7f6;border-radius:9px;padding:10px 12px}
+.mstat .k{font-size:9px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.mstat .v{font-size:21px;font-weight:800;margin-top:3px;font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;transition:color .3s}
+.verdict{margin-top:auto;padding-top:13px;font-size:12.5px;line-height:1.45;font-weight:700;transition:color .3s}
+.mbtns{display:flex;gap:8px;margin-top:11px}
+.mbtn{flex:1;border:1px solid var(--hair);background:var(--card);border-radius:8px;padding:8px;
+  font-size:11px;font-weight:800;letter-spacing:.06em;cursor:pointer;color:var(--ink-2);transition:.18s}
+.mbtn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ============ 5 TABS + CALC ============ */
+.tabs{display:flex;gap:8px;margin-bottom:13px}
+.tab{flex:1;border:1px solid var(--hair);background:var(--card);border-radius:10px;padding:12px 14px;
+  cursor:pointer;text-align:left;transition:.2s;box-shadow:0 1px 2px rgba(11,11,11,.04)}
+.tab:hover{transform:translateY(-2px)}
+.tab .tn{font-size:15px;font-weight:800}
+.tab .td{font-size:11px;color:var(--ink-3);margin-top:3px}
+.tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.tab.on .td{color:rgba(255,255,255,.82)}
+.tabpanel{background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh);
+  padding:18px 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tp .k{font-size:9.5px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--blue)}
+.tp .v{font-size:13px;line-height:1.45;margin-top:6px;color:var(--ink-2)}
+.tp .v b{color:var(--ink);font-weight:700}
+.calc{background:linear-gradient(150deg,#2a78d6,#184f95);border-radius:12px;padding:16px 18px;
+  color:#fff;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;box-shadow:var(--sh)}
+.calc .cl{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(255,255,255,.75);margin-bottom:8px}
+.calc .inputs{display:flex;gap:8px}
+.calc input{width:82px;padding:8px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.3);
+  background:rgba(255,255,255,.14);color:#fff;font-size:14px;font-weight:700;font-family:inherit;
+  text-align:right;outline:none}
+.calc input:focus{background:rgba(255,255,255,.26);border-color:#fff}
+.calc .fy{font-size:9px;color:rgba(255,255,255,.7);text-align:center;margin-top:4px;font-weight:700}
+.calc .eq{font-size:24px;color:rgba(255,255,255,.5);font-weight:300}
+.calc .out{text-align:right}
+.calc .out .n{font-size:33px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.calc .out .s{font-size:10.5px;color:rgba(255,255,255,.8);margin-top:5px;font-weight:600}
+
+/* ============ 6 APPROACHES ============ */
+.appr{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.ap{background:var(--card);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--sh);
+  padding:18px 17px;cursor:pointer;text-align:left;transition:.2s;min-height:180px;
+  display:flex;flex-direction:column;border-top:4px solid var(--blue)}
+.ap:hover{transform:translateY(-4px);box-shadow:var(--sh-hi)}
+.ap.sel{box-shadow:0 0 0 2px rgba(42,120,214,.3),var(--sh-hi);transform:translateY(-4px)}
+.ap .n{width:27px;height:27px;border-radius:8px;background:var(--blue);color:#fff;font-size:12px;
+  font-weight:800;display:flex;align-items:center;justify-content:center}
+.ap h4{font-size:15.5px;font-weight:800;margin-top:11px;letter-spacing:-.01em}
+.ap .plain{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:8px}
+.ap .tagx{margin-top:auto;padding-top:11px;font-size:9.5px;font-weight:800;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3)}
+#apOut{margin-top:15px;border-radius:12px;padding:15px 19px;display:flex;gap:22px;align-items:center;
+  min-height:74px;transition:background .25s,border-color .25s}
+#apOut .who{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--blue);flex:none;width:150px}
+#apOut .txt{font-size:13px;line-height:1.5;color:var(--ink-2)}
+#apOut .txt b{color:var(--ink);font-weight:700}
+
+/* ============ 7 PROBLEMS ============ */
+.probs{display:flex;flex-direction:column;gap:9px}
+.prob{background:var(--card);border:1px solid var(--hair);border-radius:11px;padding:13px 16px;
+  box-shadow:0 1px 2px rgba(11,11,11,.04);display:grid;grid-template-columns:30px 1fr;gap:14px;
+  align-items:start;transition:.18s}
+.prob:hover{transform:translateX(4px);border-color:var(--red)}
+.prob .n{width:26px;height:26px;border-radius:8px;background:var(--red-t);color:var(--red);
+  font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.prob h5{font-size:14px;font-weight:800}
+.prob p{font-size:12.5px;color:var(--ink-2);line-height:1.5;margin-top:4px}
+.chart{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:18px;box-shadow:var(--sh)}
+.chart .ct{font-size:13px;font-weight:800}
+.chart .cs{font-size:10.5px;color:var(--ink-3);margin-top:4px;line-height:1.4}
+.bar-row{margin-top:16px}
+.bar-row .bl{font-size:11.5px;color:var(--ink-2);margin-bottom:6px;display:flex;
+  justify-content:space-between;align-items:baseline;font-weight:700}
+.bar-row .bl b{font-size:19px;color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
+.track{height:14px;background:#eceeed;border-radius:3px;overflow:hidden}
+.fill{height:100%;border-radius:0 4px 4px 0;background:var(--blue);width:0;
+  transition:width 1s cubic-bezier(.2,.7,.3,1) .3s}
+.fill.lt{background:var(--blue-l)}
+.chart .cnote{font-size:10.5px;color:var(--ink-3);margin-top:14px;line-height:1.45;
+  padding-top:12px;border-top:1px solid var(--hair-2)}
+
+/* ============ 8 TIMELINE / 9 STEPS ============ */
+.tl{position:relative;padding:22px 8px 0}
+.tl .axis{position:absolute;left:8px;right:8px;top:40px;height:3px;background:#d9dcd9;border-radius:2px}
+.tl .axisfill{position:absolute;left:0;top:0;height:100%;background:var(--blue);border-radius:2px;
+  transition:width .4s ease}
+.years{display:flex;justify-content:space-between;position:relative}
+.yr{flex:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;background:none;
+  border:none;padding:0}
+.yr .lab{font-size:12.5px;font-weight:800;color:var(--ink-3);transition:.2s;text-align:center;line-height:1.2}
+.yr .dot{width:15px;height:15px;border-radius:50%;background:#fff;border:3px solid #c9ccc9;
+  margin-top:8px;transition:.22s}
+.yr:hover .dot{border-color:var(--blue);transform:scale(1.15)}
+.yr:hover .lab{color:var(--blue)}
+.yr.on .lab{color:var(--blue)}
+.yr.on .dot{border-color:var(--blue);background:var(--blue);transform:scale(1.3);
+  box-shadow:0 0 0 5px rgba(42,120,214,.16)}
+#tlpanel{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.tlcard{border-radius:12px;overflow:hidden;box-shadow:var(--sh);border:1px solid var(--hair);
+  background:var(--card);min-height:126px}
+.tlcard .h{padding:9px 16px;font-size:10px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:#fff}
+.tlcard.g .h{background:var(--blue)} .tlcard.i .h{background:var(--green)}
+.tlcard .c{padding:13px 16px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.tlcard .c b{color:var(--ink);font-weight:700;display:block;margin-bottom:3px}
+#stepPanel{margin-top:24px;background:var(--card);border:1px solid var(--hair);border-radius:12px;
+  box-shadow:var(--sh);padding:20px 22px;min-height:172px;border-left:4px solid var(--blue)}
+#stepPanel .sh{font-size:10px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue)}
+#stepPanel h3{font-size:20px;font-weight:800;margin-top:7px;letter-spacing:-.015em}
+#stepPanel p{font-size:13.5px;line-height:1.55;color:var(--ink-2);margin-top:10px;max-width:1000px}
+#stepPanel p b{color:var(--ink);font-weight:700}
+
+/* ============ 10 ============ */
+.recs{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.rec{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:17px 18px;
+  box-shadow:var(--sh);transition:.18s}
+.rec:hover{transform:translateY(-3px);box-shadow:var(--sh-hi)}
+.rec h5{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#fff;font-weight:800;
+  background:var(--blue);display:inline-block;padding:4px 9px;border-radius:5px}
+.rec ul{list-style:none;margin-top:11px}
+.rec li{font-size:12.5px;line-height:1.45;color:var(--ink-2);padding-left:13px;position:relative;margin-bottom:8px}
+.rec li:last-child{margin-bottom:0}
+.rec li:before{content:"";position:absolute;left:0;top:6px;width:5px;height:5px;border-radius:50%;background:var(--blue-l)}
+.rec li b{color:var(--ink);font-weight:700}
+.closing{margin-top:14px;background:linear-gradient(100deg,#2a78d6,#184f95);color:#fff;
+  border-radius:12px;padding:16px 21px;font-size:14px;font-weight:600;line-height:1.45;box-shadow:var(--sh)}
+.closing u{text-underline-offset:3px}
+
+/* ============ chrome ============ */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--blue);width:0;transition:width .3s ease;z-index:30}
+#dots{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;z-index:30}
+#dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;cursor:pointer;
+  background:#b3b6b3;transition:.2s}
+#dots button:hover{background:#84877f}
+#dots button.on{background:var(--blue);transform:scale(1.4)}
+#hint{position:fixed;bottom:12px;left:18px;font-size:10px;color:#9a9d9a;z-index:30;transition:opacity .5s}
+.navzone{position:fixed;top:0;bottom:0;width:12%;z-index:5;cursor:pointer}
+.navzone.l{left:0}.navzone.r{right:0}
+#ov{position:fixed;inset:0;background:rgba(20,22,20,.93);z-index:40;display:none;
+  grid-template-columns:repeat(5,1fr);gap:14px;padding:40px;align-content:center}
+#ov.show{display:grid}
+#ov button{background:#fff;border:2px solid transparent;border-radius:8px;padding:14px 12px;
+  cursor:pointer;text-align:left;transition:.18s}
+#ov button:hover{transform:translateY(-4px);border-color:var(--blue)}
+#ov .n{font-size:10px;font-weight:800;color:var(--blue);letter-spacing:.1em}
+#ov .t{font-size:12.5px;font-weight:700;margin-top:6px;line-height:1.3;color:var(--ink)}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div class="navzone l" data-nav="-1"></div>
+<div class="navzone r" data-nav="1"></div>
+
+<div id="stage">
+
+<!-- ============ 1 TITLE ============ -->
+<section class="slide t1">
+  <div class="left">
+    <div class="eyebrow anim d1">Global Investment Strategies · CIA III</div>
+    <h1 class="anim d2">Corporate<br>Governance &amp;<br>Social Responsibility</h1>
+    <div class="bar anim d3"></div>
+    <p class="lede anim d4">What it is, why investors<br>care, and <strong style="color:var(--blue)">how it is measured</strong>.</p>
+    <div class="course anim d5">Concepts · pillars · how investors apply it · the problems ·
+      the rules in India · one case study.</div>
+  </div>
+  <div class="right">
+    <div class="rlabel anim d2">Presented by</div>
+    <div class="names">
+      <div class="anim d3">Amulya G S</div>
+      <div class="anim d4">Charunya K</div>
+      <div class="anim d5">Prisha Das</div>
+      <div class="anim d6">Sai Kruthi</div>
+      <div class="anim d7">Swastik Jena</div>
+    </div>
+    <div class="stamp anim d8">10 slides · 12–15 minutes</div>
+  </div>
+</section>
+
+<!-- ============ 2 WHAT IS IT ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>The concept</div><div class="num">02 / 10</div></div>
+  <div class="head anim d1">
+    <h1>What is <span class="hl">corporate governance</span>?</h1>
+    <p class="sub"><span class="tapcue">Click each party to see what can go wrong</span></p>
+  </div>
+  <div class="body">
+    <div class="def anim d2" style="margin-bottom:16px">
+      <div class="dk">Definition</div>
+      <div class="dv">The system of <em>rules, practices and processes</em> by which a company is
+        directed and controlled — and the way it balances the interests of everyone with a stake in it.</div>
+    </div>
+    <div class="actors">
+      <button class="actor anim d3" data-k="own"><div class="ico">1</div>
+        <h4>Shareholders</h4>
+        <p>They put in the money and carry the risk. They own the company — but they do not run it.</p></button>
+      <div class="arrow anim d4"><div class="lb">elect</div><div class="ln">→</div></div>
+      <button class="actor anim d5" data-k="board"><div class="ico">2</div>
+        <h4>Board of Directors</h4>
+        <p>Elected by shareholders to supervise the company on their behalf. The link between the two sides.</p></button>
+      <div class="arrow anim d6"><div class="lb">supervises</div><div class="ln">→</div></div>
+      <button class="actor anim d7" data-k="mgmt"><div class="ico">3</div>
+        <h4>Management</h4>
+        <p>Runs the business day to day. They control the company — but they do not own it.</p></button>
+    </div>
+    <div id="actorOut" class="note blue">
+      <div class="who" style="color:var(--blue)">The core problem</div>
+      <div class="txt"><b>Ownership and control sit with different people.</b>
+        The people who own the company are not the people running it — so their interests can drift apart.
+        Governance is simply the machinery built to keep them aligned.
+        This is what <b>agency theory</b> (Jensen &amp; Meckling, 1976) studies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 PILLARS ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Basic terms</div><div class="num">03 / 10</div></div>
+  <div class="head anim d1">
+    <h1>The three pillars: <span class="hl">E, S and G</span></h1>
+    <p class="sub"><span class="tapcue">Click a pillar</span></p>
+  </div>
+  <div class="body">
+    <div class="pillars">
+      <button class="pil e anim d2" data-k="e"><div class="letter">E</div>
+        <h3>Environmental</h3>
+        <ul><li>Carbon emissions and energy use</li><li>Water and waste</li>
+          <li>Pollution and biodiversity</li><li>Climate-related risk</li></ul>
+        <div class="tagx">Not our topic today</div></button>
+      <button class="pil s anim d3" data-k="s"><div class="letter">S</div>
+        <h3>Social</h3>
+        <ul><li>Employee safety, wages and rights</li><li>Supply-chain labour standards</li>
+          <li>Product safety and data privacy</li><li>Community relations</li></ul>
+        <div class="tagx">Our topic — part 1</div></button>
+      <button class="pil g anim d4" data-k="g"><div class="letter">G</div>
+        <h3>Governance</h3>
+        <ul><li>Board structure and independence</li><li>Shareholder rights</li>
+          <li>Executive pay</li><li>Audit quality and transparency</li></ul>
+        <div class="tagx">Our topic — part 2</div></button>
+    </div>
+    <div id="pilOut" class="note blue" style="margin-top:15px;display:flex;gap:22px;align-items:center;min-height:76px">
+      <div class="who" style="font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);flex:none;width:172px">Why G comes first</div>
+      <div class="txt" style="font-size:13px;line-height:1.5;color:var(--ink-2)">
+        Governance is the only pillar you can <b>verify from public documents</b> — a board's composition
+        and an auditor's report are facts on record. E and S are largely what the company chooses to tell you.
+        So a company with weak governance cannot be trusted on its own E and S reporting either.
+        <b>G is the gatekeeper.</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 WHY IT MATTERS ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Why an investor cares · live model</div><div class="num">04 / 10</div></div>
+  <div class="head anim d1">
+    <h1>Weak governance <span class="hl">raises the price of money</span></h1>
+    <p class="sub"><span class="tapcue">Switch a safeguard off and watch the numbers move</span></p>
+  </div>
+  <div class="body">
+    <div class="chips">
+      <div class="chip anim d2"><div class="l">Cost of capital</div>
+        <div class="t">Riskier company → investors demand a higher return → the company is worth less today</div></div>
+      <div class="chip anim d3"><div class="l">Unstable profits</div>
+        <div class="t">Fines, strikes, product recalls and lost customers</div></div>
+      <div class="chip anim d4"><div class="l">Long-term value</div>
+        <div class="t">Losing the trust to operate affects every future year, not just this one</div></div>
+      <div class="chip anim d5"><div class="l">Worst case</div>
+        <div class="t">Fraud is a permanent loss — not a dip you recover from</div></div>
+    </div>
+    <div class="s4">
+      <div class="safelist" id="safelist">
+        <button class="safe anim d3" data-w="18"><div class="tog"></div>
+          <h5>Independent board</h5><p>Directors who can genuinely challenge management</p></button>
+        <button class="safe anim d4" data-w="20"><div class="tog"></div>
+          <h5>Shareholder rights</h5><p>Small shareholders can actually vote and be heard</p></button>
+        <button class="safe anim d5" data-w="18"><div class="tog"></div>
+          <h5>Transparent dealings</h5><p>Deals with the owner's own companies are disclosed and approved</p></button>
+        <button class="safe anim d6" data-w="22"><div class="tog"></div>
+          <h5>Credible auditor</h5><p>An outside firm checks that the accounts are true</p></button>
+        <button class="safe anim d7" data-w="10"><div class="tog"></div>
+          <h5>Pay linked to performance</h5><p>Bonuses can be taken back if results were misstated</p></button>
+        <button class="safe anim d8" data-w="12"><div class="tog"></div>
+          <h5>Whistleblower channel</h5><p>Staff can report wrongdoing safely</p></button>
+      </div>
+      <div class="meter anim d3">
+        <div class="mt">Governance score</div>
+        <div class="score" id="gScore">100<span>/100</span></div>
+        <div class="gtrack"><div class="gfill" id="gFill" style="width:100%"></div></div>
+        <div class="mstats">
+          <div class="mstat"><div class="k">Return investors demand</div><div class="v" id="gKe">10.5%</div></div>
+          <div class="mstat"><div class="k">Company value</div><div class="v" id="gVal">100</div></div>
+        </div>
+        <div class="verdict" id="gVerdict" style="color:var(--green)">
+          Fully safeguarded. Investors accept the lowest return, so the company is worth the most.</div>
+        <div class="mbtns">
+          <button class="mbtn" id="gReset">RESET</button>
+          <button class="mbtn" id="gStrip">REMOVE ALL</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot anim d8">
+    <div class="note blue"><b>The point in one line:</b> good governance does not make a company earn more.
+      It makes investors willing to accept a <b>lower return</b> for the same profits — and a lower required
+      return means a <b>higher value today</b>.</div>
+  </div>
+</section>
+
+<!-- ============ 5 CSR / ESG / IMPACT ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Three terms people confuse</div><div class="num">05 / 10</div></div>
+  <div class="head anim d1">
+    <h1>CSR, ESG investing and <span class="hl">impact investing</span></h1>
+    <p class="sub"><span class="tapcue">Click a tab — then try the calculator</span></p>
+  </div>
+  <div class="body">
+    <div class="tabs" id="tabs">
+      <button class="tab on anim d2" data-i="0"><div class="tn">CSR</div><div class="td">The company's money</div></button>
+      <button class="tab anim d3" data-i="1"><div class="tn">ESG investing</div><div class="td">The investor's money</div></button>
+      <button class="tab anim d4" data-i="2"><div class="tn">Impact investing</div><div class="td">Outcome and return</div></button>
+    </div>
+    <div class="tabpanel anim d5" id="tabpanel"></div>
+    <div class="calc anim d6" style="margin-top:14px">
+      <div>
+        <div class="cl">Net profit (₹ crore)</div>
+        <div class="inputs">
+          <div><input id="p1" type="number" value="420"><div class="fy">YEAR 1</div></div>
+          <div><input id="p2" type="number" value="510"><div class="fy">YEAR 2</div></div>
+          <div><input id="p3" type="number" value="570"><div class="fy">YEAR 3</div></div>
+        </div>
+      </div>
+      <div style="text-align:center"><div class="eq">→</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.78);font-weight:700;letter-spacing:.1em">
+          2% OF THE 3-YEAR AVERAGE PROFIT</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.88);margin-top:6px" id="calcAvg"></div>
+      </div>
+      <div class="out">
+        <div class="cl">CSR a company must spend</div>
+        <div class="n" id="calcOut">₹10.0 cr</div>
+        <div class="s">Companies Act 2013, Section 135</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot anim d7">
+    <div class="note green"><b>India was the first country in the world to make CSR spending compulsory.</b>
+      Any company above a certain size must spend 2% of its average profit on social causes — and since 2021,
+      money it fails to spend has to be transferred out, not kept.</div>
+  </div>
+</section>
+
+<!-- ============ 6 HOW INVESTORS APPLY IT ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Practical application</div><div class="num">06 / 10</div></div>
+  <div class="head anim d1">
+    <h1>Four ways investors <span class="hl">actually use this</span></h1>
+    <p class="sub"><span class="tapcue">Click an approach for the trade-off</span></p>
+  </div>
+  <div class="body">
+    <div class="appr">
+      <button class="ap anim d2" data-k="a"><div class="n">1</div>
+        <h4>Exclusion</h4>
+        <p class="plain">Simply refuse to invest in certain industries — tobacco, weapons, coal.
+          The oldest and simplest method.</p>
+        <div class="tagx">Rule out</div></button>
+      <button class="ap anim d3" data-k="b"><div class="n">2</div>
+        <h4>Selection</h4>
+        <p class="plain">Stay in every industry, but within each one buy only the companies with the
+          best ESG record.</p>
+        <div class="tagx">Pick the best</div></button>
+      <button class="ap anim d4" data-k="c"><div class="n">3</div>
+        <h4>Integration</h4>
+        <p class="plain">Keep your normal valuation, but adjust the numbers for ESG risk — a higher
+          required return, or money set aside for a likely fine.</p>
+        <div class="tagx">Adjust the numbers</div></button>
+      <button class="ap anim d5" data-k="d"><div class="n">4</div>
+        <h4>Engagement</h4>
+        <p class="plain">Stay invested and use your rights as a shareholder — vote at the AGM, meet
+          the board, push for change from inside.</p>
+        <div class="tagx">Use your vote</div></button>
+    </div>
+    <div id="apOut" class="note blue">
+      <div class="who">Which is most used?</div>
+      <div class="txt"><b>Integration.</b> Exclusion is the easiest to explain but the bluntest — you lose
+        whole industries from your portfolio. Integration is now the mainstream approach because it does not
+        require a separate process: the analyst simply builds the risk into the valuation they were already doing.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 PROBLEMS ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Challenges</div><div class="num">07 / 10</div></div>
+  <div class="head anim d1">
+    <h1>Why this is <span class="hl">harder than it sounds</span></h1>
+  </div>
+  <div class="body">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start">
+      <div class="probs">
+        <div class="prob anim d2"><div class="n">1</div><div>
+          <h5>The ratings do not agree</h5>
+          <p>Different agencies rate the same company very differently, because each one measures
+            different things and weights them differently. There is no single agreed scorecard.</p></div></div>
+        <div class="prob anim d3"><div class="n">2</div><div>
+          <h5>Greenwashing</h5>
+          <p>Most of this information is reported by the company about itself. A firm can look
+            responsible on paper simply by writing a longer sustainability report.</p></div></div>
+        <div class="prob anim d4"><div class="n">3</div><div>
+          <h5>It rewards disclosure, not performance</h5>
+          <p>Scores often go up when a company <em>reports</em> more — not when it actually
+            behaves better.</p></div></div>
+        <div class="prob anim d5"><div class="n">4</div><div>
+          <h5>Short-term pressure</h5>
+          <p>Governance improvements pay off over five to ten years, but fund managers are
+            judged every three months.</p></div></div>
+      </div>
+      <div class="chart anim d6">
+        <div class="ct">How much do the raters agree?</div>
+        <div class="cs">Average agreement between six major ESG rating agencies, compared with credit ratings.
+          1.00 would mean perfect agreement.</div>
+        <div class="bar-row">
+          <div class="bl"><span>ESG ratings</span><b>0.54</b></div>
+          <div class="track"><div class="fill lt" data-w="54"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bl"><span>Credit ratings</span><b>0.99</b></div>
+          <div class="track"><div class="fill" data-w="99"></div></div>
+        </div>
+        <div class="cnote">Credit rating agencies almost always agree. ESG agencies agree only about half the
+          time — so two funds using the same word can hold completely different companies.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot anim d7">
+    <div class="note blue"><b>None of this makes ESG useless.</b> It means the ratings are a
+      <b>starting point, not an answer</b> — you still have to read the company's own filings.</div>
+  </div>
+</section>
+
+<!-- ============ 8 RULES ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Current developments</div><div class="num">08 / 10</div></div>
+  <div class="head anim d1">
+    <h1>The rules — and <span class="hl">India's role</span></h1>
+    <p class="sub"><span class="tapcue">Click a year</span></p>
+  </div>
+  <div class="body">
+    <div class="tl anim d2">
+      <div class="axis"><div class="axisfill" id="axisfill" style="width:0%"></div></div>
+      <div class="years" id="years">
+        <button class="yr" data-y="2013"><div class="lab">2013</div><div class="dot"></div></button>
+        <button class="yr" data-y="2015"><div class="lab">2015</div><div class="dot"></div></button>
+        <button class="yr" data-y="2020"><div class="lab">2020</div><div class="dot"></div></button>
+        <button class="yr" data-y="2021"><div class="lab">2021</div><div class="dot"></div></button>
+        <button class="yr" data-y="2023"><div class="lab">2023</div><div class="dot"></div></button>
+        <button class="yr" data-y="2025"><div class="lab">2025</div><div class="dot"></div></button>
+      </div>
+      <div id="tlpanel">
+        <div class="tlcard i"><div class="h">India</div><div class="c" id="tlI"></div></div>
+        <div class="tlcard g"><div class="h">Rest of the world</div><div class="c" id="tlG"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot two anim d7">
+    <div class="note green"><b>India is genuinely ahead on paper.</b> Compulsory CSR, compulsory
+      sustainability reporting, and the first country to regulate the ESG rating agencies themselves.</div>
+    <div class="note blue"><b>The direction everywhere is the same:</b> from voluntary claims
+      towards standardised, independently checked reporting.</div>
+  </div>
+</section>
+
+<!-- ============ 9 CASE ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Case study</div><div class="num">09 / 10</div></div>
+  <div class="head anim d1">
+    <h1>Satyam Computer Services, <span class="hl">2009</span></h1>
+    <p class="sub"><span class="tapcue">Click through the story</span> &nbsp;·&nbsp; India's most-studied corporate governance failure</p>
+  </div>
+  <div class="body">
+    <div class="tl anim d2">
+      <div class="axis"><div class="axisfill" id="axisfill2" style="width:0%"></div></div>
+      <div class="years" id="steps">
+        <button class="yr" data-s="0"><div class="lab">Before</div><div class="dot"></div></button>
+        <button class="yr" data-s="1"><div class="lab">The confession</div><div class="dot"></div></button>
+        <button class="yr" data-s="2"><div class="lab">The fallout</div><div class="dot"></div></button>
+        <button class="yr" data-s="3"><div class="lab">What failed</div><div class="dot"></div></button>
+        <button class="yr" data-s="4"><div class="lab">What changed</div><div class="dot"></div></button>
+      </div>
+      <div id="stepPanel"></div>
+    </div>
+  </div>
+  <div class="foot anim d7">
+    <div class="note blue"><b>Why this case is used in every textbook:</b> the accounts looked excellent
+      right up to the day. The problem was never in the numbers investors could see — it was in
+      <b>who was allowed to check them</b>.</div>
+  </div>
+</section>
+
+<!-- ============ 10 RECOMMENDATIONS ============ -->
+<section class="slide">
+  <div class="rail"><div class="sec"><i></i>Recommendations &amp; conclusion</div><div class="num">10 / 10</div></div>
+  <div class="head anim d1">
+    <h1>What we would <span class="hl">recommend</span></h1>
+  </div>
+  <div class="body">
+    <div class="recs">
+      <div class="rec anim d2"><h5>For investors</h5><ul>
+        <li>Treat <b>governance as a pass/fail test</b>, and E and S as factors that adjust the valuation.</li>
+        <li><b>Build it into the normal valuation</b> rather than keeping a separate ESG score on the side.</li>
+        <li>Use ratings as a <b>starting point, never a conclusion</b> — read the company's own filings.</li>
+        <li>Judge engagement on <b>what actually changed</b>, not how many letters were written.</li></ul></div>
+      <div class="rec anim d3"><h5>For companies</h5><ul>
+        <li><b>Genuine board independence</b> matters more than meeting the minimum count.</li>
+        <li>Disclose dealings with the owner's other businesses <b>before someone else finds them</b>.</li>
+        <li>Treat CSR as a <b>long-term investment in trust</b>, not a tax to be paid and forgotten.</li>
+        <li>Report outcomes, <b>not just amounts spent</b>.</li></ul></div>
+      <div class="rec anim d4"><h5>For regulators</h5><ul>
+        <li>Move towards <b>one common reporting standard</b> so companies can be compared.</li>
+        <li>Require <b>independent checking</b> of sustainability data, the way accounts are audited.</li>
+        <li><b>Regulate the rating agencies</b>, not only the companies they rate.</li>
+        <li>Strengthen the <b>voting rights of small shareholders</b>.</li></ul></div>
+    </div>
+    <div class="closing anim d6">
+      <b>In conclusion:</b> corporate governance and social responsibility are no longer a filter applied
+      <u>after</u> an investment decision. Done properly they are part of <u>how</u> the decision is made —
+      a judgement about risk and the return investors will demand, not a statement of values.
+    </div>
+  </div>
+</section>
+
+</div><!-- /stage -->
+
+<div id="ov"></div>
+<div id="dots"></div>
+<div id="hint">← → navigate · O overview · F fullscreen</div>
+
+<script>
+(function(){
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+
+var slides=$$('.slide'), i=0, n=slides.length;
+var dots=$('#dots'), prog=$('#prog'), hint=$('#hint'), ov=$('#ov');
+var titles=['Title','What is governance?','E, S and G','Why investors care',
+            'CSR / ESG / Impact','How investors apply it','The challenges',
+            'The rules','Case: Satyam','Recommendations'];
+
+slides.forEach(function(_,k){
+  var b=document.createElement('button'); b.onclick=function(){go(k)}; dots.appendChild(b);
+  var o=document.createElement('button');
+  o.innerHTML='<div class="n">'+String(k+1).padStart(2,'0')+'</div><div class="t">'+titles[k]+'</div>';
+  o.onclick=function(){ov.classList.remove('show');go(k)}; ov.appendChild(o);
+});
+var btns=$$('button',dots);
+
+var settleT=null;
+function go(k){
+  i=Math.max(0,Math.min(n-1,k));
+  slides.forEach(function(s,j){s.classList.toggle('on',j===i);s.classList.remove('settled')});
+  clearTimeout(settleT);
+  settleT=setTimeout(function(){ slides[i].classList.add('settled') },750);
+  btns.forEach(function(b,j){b.classList.toggle('on',j===i)});
+  prog.style.width=(i/(n-1)*100)+'%';
+  if(i>0&&hint) hint.style.opacity=0;
+  if(history.replaceState) history.replaceState(null,'','#'+(i+1));
+  onEnter(i);
+}
+function fromHash(){var k=parseInt((location.hash||'').replace('#',''),10);return (k>=1&&k<=n)?k-1:0}
+window.addEventListener('hashchange',function(){go(fromHash())});
+
+document.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT') return;
+  var k=e.key;
+  if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'){e.preventDefault();go(i+1)}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(i-1)}
+  else if(k==='Home'){go(0)} else if(k==='End'){go(n-1)}
+  else if(k==='o'||k==='O'){ov.classList.toggle('show')}
+  else if(k==='Escape'){ov.classList.remove('show')}
+  else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+});
+$$('.navzone').forEach(function(z){z.onclick=function(){go(i+parseInt(z.dataset.nav,10))}});
+var tx=null;
+document.addEventListener('touchstart',function(e){tx=e.changedTouches[0].clientX},{passive:true});
+document.addEventListener('touchend',function(e){
+  if(tx===null)return; var d=e.changedTouches[0].clientX-tx;
+  if(Math.abs(d)>50) go(i+(d<0?1:-1)); tx=null;},{passive:true});
+
+function fit(){var s=Math.min(window.innerWidth/1280,(window.innerHeight-34)/720);
+  $('#stage').style.setProperty('--s',s)}
+window.addEventListener('resize',fit);
+
+function onEnter(k){
+  if(k===6){ $$('.fill',slides[k]).forEach(function(f){ f.style.width='0';
+    setTimeout(function(){f.style.width=f.dataset.w+'%'},60); }); }
+}
+
+/* ---------- 2: actors ---------- */
+var ACT={
+ own:{w:'Shareholders',c:'var(--blue)',cls:'note blue',
+  t:'They supply the capital and take the risk, but there can be thousands of them and none has enough of a stake to police the company alone. <b>They rely entirely on the board to act for them.</b> In India there is a second version of this problem: one promoter family often owns a controlling stake, so the risk is not management ignoring the owners — it is the <b>controlling owner ignoring the small shareholders</b>.'},
+ board:{w:'Board of Directors',c:'var(--blue)',cls:'note blue',
+  t:'The board exists to question management on the shareholders\' behalf. <b>It only works if the directors are genuinely independent.</b> If they are friends of the founder, have sat there for fifteen years, or the same person is both Chairman and CEO, nobody in the room can say no.'},
+ mgmt:{w:'Management',c:'var(--red)',cls:'note red',
+  t:'Managers know far more about the company than anyone outside it. That gap in information is where the risk lives: <b>they may favour their own pay, their own growth plans, or hide bad news</b> — and by the time shareholders find out, the damage is done.'}
+};
+var aOut=$('#actorOut');
+var aDefault=aOut.innerHTML;
+$$('.actor').forEach(function(a){
+  a.onclick=function(){
+    var was=a.classList.contains('sel');
+    $$('.actor').forEach(function(x){x.classList.remove('sel')});
+    if(was){ aOut.className='note blue'; aOut.innerHTML=aDefault; return; }
+    a.classList.add('sel');
+    var d=ACT[a.dataset.k]; aOut.className=d.cls;
+    aOut.innerHTML='<div class="who" style="color:'+d.c+'">'+d.w+'</div><div class="txt">'+d.t+'</div>';
+  };
+});
+
+/* ---------- 3: pillars ---------- */
+var PIL={
+ e:{w:'Environmental',c:'var(--green)',cls:'note green',
+  t:'How a company affects the natural world, and how the natural world affects it back. <b>We are not covering E in this presentation</b> — it is the largest pillar and usually gets a topic of its own.'},
+ s:{w:'Social',c:'var(--amber)',cls:'note',
+  t:'How a company treats <b>people</b> — its own staff, the workers in its supply chain, its customers and the community around it. The difficulty with S is that most of it is <b>behaviour</b>, and behaviour is reported by the company itself rather than recorded in a public document.'},
+ g:{w:'Governance',c:'var(--blue)',cls:'note blue',
+  t:'How a company is <b>controlled and supervised</b> — who sits on the board, how executives are paid, who audits the accounts, and what rights small shareholders have. Unlike E and S, most of this is <b>a matter of public record</b>, which is why investors treat it as the most reliable pillar.'}
+};
+var pOut=$('#pilOut'); var pDefault=pOut.innerHTML;
+$$('.pil').forEach(function(p){
+  p.onclick=function(){
+    var was=p.classList.contains('sel');
+    $$('.pil').forEach(function(x){x.classList.remove('sel')});
+    if(was){ pOut.className='note blue'; pOut.innerHTML=pDefault; return; }
+    p.classList.add('sel');
+    var d=PIL[p.dataset.k];
+    pOut.className=d.cls; if(d.cls==='note') pOut.style.background='var(--amber-t)';
+    else pOut.style.background='';
+    pOut.innerHTML='<div class="who" style="font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;flex:none;width:172px;color:'+d.c+'">'+d.w+'</div>'+
+      '<div class="txt" style="font-size:13px;line-height:1.5;color:var(--ink-2)">'+d.t+'</div>';
+  };
+});
+
+/* ---------- 4: live model ---------- */
+var safes=$$('#safelist .safe');
+function gUpdate(){
+  var score=0,total=0;
+  safes.forEach(function(s){var w=parseInt(s.dataset.w,10);total+=w;
+    if(!s.classList.contains('off'))score+=w;});
+  var pct=Math.round(score/total*100);
+  var ke=10.5+(100-pct)/100*6.0;
+  var val=Math.round((1/(ke-4))/(1/(10.5-4))*100);
+  var col=pct>=80?'var(--green)':pct>=50?'var(--amber)':'var(--red)';
+  $('#gScore').innerHTML=pct+'<span>/100</span>'; $('#gScore').style.color=col;
+  $('#gFill').style.width=pct+'%'; $('#gFill').style.background=col;
+  $('#gKe').textContent=ke.toFixed(1)+'%'; $('#gKe').style.color=pct>=80?'var(--ink)':col;
+  $('#gVal').textContent=val; $('#gVal').style.color=val>=95?'var(--ink)':col;
+  var v=$('#gVerdict'); v.style.color=col;
+  if(pct===100) v.innerHTML='Fully safeguarded. Investors accept the lowest return, so the company is worth the most.';
+  else if(pct>=80) v.innerHTML='Still investable — but investors now want a little more return for the same profits.';
+  else if(pct>=50) v.innerHTML='Nothing about the business has changed, yet <u>'+(100-val)+'% of the value has gone</u>. That is the cost of weak governance.';
+  else if(pct>0) v.innerHTML='Very little is checking management now. Investors demand a much higher return, and the value collapses.';
+  else v.innerHTML='No independent board, no auditor, no shareholder rights. <u>Nobody is watching anything.</u>';
+}
+safes.forEach(function(s){s.onclick=function(){s.classList.toggle('off');gUpdate();}});
+$('#gReset').onclick=function(){safes.forEach(function(s){s.classList.remove('off')});gUpdate();};
+$('#gStrip').onclick=function(){safes.forEach(function(s,k){setTimeout(function(){
+  s.classList.add('off');gUpdate();},k*130);});};
+gUpdate();
+
+/* ---------- 5: tabs + calculator ---------- */
+var TAB=[
+ [['Whose money','<b>The company\'s own money.</b> It is an expense in its accounts.'],
+  ['The purpose','To benefit society and to comply with the law.'],
+  ['How success is judged','Was the money actually spent, and did the project work?'],
+  ['In India','<b>Compulsory.</b> Companies Act 2013, Section 135 — 2% of average profit.']],
+ [['Whose money','<b>The investor\'s money.</b> It is a portfolio decision.'],
+  ['The purpose','A better return for the risk taken. <b>It is not charity</b> — if it does not improve the risk and return, it has failed on its own terms.'],
+  ['How success is judged','Better returns, or the same returns with less risk.'],
+  ['In India','Funds screen companies using the sustainability reports SEBI now requires.']],
+ [['Whose money','<b>The investor\'s money</b>, aimed at a specific result.'],
+  ['The purpose','A measurable social result <b>and</b> a financial return — both together.'],
+  ['How success is judged','Would this result have happened anyway without your money? If yes, it does not count.'],
+  ['In India','Affordable housing, microfinance, small-business lending.']]
+];
+function renderTab(x){
+  $('#tabpanel').innerHTML=TAB[x].map(function(r){
+    return '<div class="tp"><div class="k">'+r[0]+'</div><div class="v">'+r[1]+'</div></div>'}).join('');
+}
+$$('#tabs .tab').forEach(function(t){t.onclick=function(){
+  $$('#tabs .tab').forEach(function(x){x.classList.remove('on')});
+  t.classList.add('on'); renderTab(parseInt(t.dataset.i,10));}});
+renderTab(0);
+
+function calc(){
+  var a=parseFloat($('#p1').value)||0,b=parseFloat($('#p2').value)||0,c=parseFloat($('#p3').value)||0;
+  var avg=(a+b+c)/3, req=avg*0.02;
+  $('#calcAvg').textContent='Average profit ₹'+avg.toLocaleString('en-IN',{maximumFractionDigits:0})+' cr';
+  $('#calcOut').textContent='₹'+req.toLocaleString('en-IN',{minimumFractionDigits:1,maximumFractionDigits:1})+' cr';
+}
+['p1','p2','p3'].forEach(function(id){$('#'+id).addEventListener('input',calc)});
+calc();
+
+/* ---------- 6: approaches ---------- */
+var AP={
+ a:{w:'Exclusion',t:'<b>Simple to explain, blunt in practice.</b> You never have to justify holding a tobacco company — but you also give up whole industries, so your portfolio can drift a long way from the market. And the shares you refuse to buy are simply bought by somebody who cares less.'},
+ b:{w:'Selection',t:'<b>Keeps your portfolio balanced across industries.</b> The catch is that "best in the industry" is a relative standard — the best-rated oil company is still an oil company, so a fund marketed as responsible can still hold one.'},
+ c:{w:'Integration',t:'<b>The mainstream approach today, and the most defensible.</b> There is no separate ESG process to argue about: the analyst raises the required return, or sets money aside for a likely fine, inside the valuation they were already building. The difficulty is that it is <b>harder for an outsider to verify</b> you actually did it.'},
+ d:{w:'Engagement',t:'<b>The only approach that can change the company itself.</b> You keep the shares, so you keep the risk — but you also keep the vote. It is slow, and a small shareholder has little leverage, so it works best for very large funds.'}
+};
+var apOut=$('#apOut'); var apDefault=apOut.innerHTML;
+$$('.ap').forEach(function(a){
+  a.onclick=function(){
+    var was=a.classList.contains('sel');
+    $$('.ap').forEach(function(x){x.classList.remove('sel')});
+    if(was){ apOut.innerHTML=apDefault; return; }
+    a.classList.add('sel');
+    var d=AP[a.dataset.k];
+    apOut.innerHTML='<div class="who">'+d.w+'</div><div class="txt">'+d.t+'</div>';
+  };
+});
+
+/* ---------- 8: rules timeline ---------- */
+var TL={
+ 2013:{i:'<b>Companies Act 2013</b>India makes CSR spending compulsory — the first country in the world to do so. The Act also requires independent directors and audit committees. Much of it was a direct response to the Satyam case.',
+       g:'<b>Mostly voluntary</b>Sustainability reporting exists but is optional, and several competing frameworks all measure different things.'},
+ 2015:{i:'<b>SEBI tightens listing rules</b>Listed companies must follow stricter rules on board composition, audit committees and approval of deals with related companies.',
+       g:'<b>The Paris Agreement</b>Climate risk starts being treated as a financial risk rather than only an environmental issue.'},
+ 2020:{i:'<b>Stewardship Code</b>Mutual funds must publish how they vote at company meetings, instead of voting privately.',
+       g:'<b>Investor demand grows</b>Money flowing into funds marketed as sustainable rises sharply — and so do complaints about greenwashing.'},
+ 2021:{i:'<b>CSR becomes strictly enforced</b>Companies can no longer simply explain why they did not spend. Unspent CSR money must be transferred out within a fixed time.',
+       g:'<b>Rules on fund labels</b>Europe begins forcing funds to classify themselves, so a fund cannot call itself sustainable without evidence.'},
+ 2023:{i:'<b>India regulates the rating agencies</b>SEBI becomes the first regulator in the world to licence ESG rating providers — a direct answer to the problem that raters disagree. Sustainability reporting (BRSR) is compulsory for the top 1,000 listed companies.',
+       g:'<b>A single global standard appears</b>The ISSB publishes the first international baseline for sustainability reporting, so companies in different countries can finally be compared.'},
+ 2025:{i:'<b>Independent checking widens</b>Key sustainability numbers must now be verified by an outside party, starting with the largest companies — the same principle as auditing accounts.',
+       g:'<b>Some rules are scaled back</b>Europe and the United States narrow parts of their requirements after complaints about cost. <b>The label is under pressure — the underlying risk is not.</b>'}
+};
+var yrBtns=$$('#years .yr');
+function setYear(y){
+  yrBtns.forEach(function(b){b.classList.toggle('on',b.dataset.y===String(y))});
+  var idx=yrBtns.map(function(b){return b.dataset.y}).indexOf(String(y));
+  $('#axisfill').style.width=(idx/(yrBtns.length-1)*100)+'%';
+  $('#tlI').innerHTML=TL[y].i; $('#tlG').innerHTML=TL[y].g;
+}
+yrBtns.forEach(function(b){b.onclick=function(){setYear(b.dataset.y)}});
+setYear(2013);
+
+/* ---------- 9: Satyam steps ---------- */
+var STEP=[
+ {k:'Before January 2009',h:'India\'s fourth-largest IT company',
+  t:'Satyam Computer Services employed around 50,000 people and served customers worldwide. It reported strong, steadily growing profits and a very large cash balance. It had even won an international award for corporate governance. <b>On every number an outside investor could see, it looked excellent.</b>'},
+ {k:'7 January 2009',h:'The chairman confesses',
+  t:'Founder-chairman Ramalinga Raju wrote to the board admitting that the accounts had been falsified for years. Roughly <b>₹7,136 crore of cash and assets on the balance sheet simply did not exist</b>. Profits had been inflated to keep the share price up. In his own words, it was "like riding a tiger, not knowing how to get off without being eaten."'},
+ {k:'The same day',h:'The share price collapses',
+  t:'The share price fell by <b>around 78% in a single trading session</b>. There was no gradual decline that would have let investors sell — the loss arrived all at once. Satyam was later sold to Tech Mahindra in a government-supervised auction, and Raju was convicted of fraud in 2015.'},
+ {k:'The cause',h:'Three safeguards that did not work',
+  t:'<b>The board did not challenge the chairman</b> — the founder dominated the company and independent directors did not question him. <b>The auditors signed off on cash that was not there.</b> <b>There was no safe way for staff to report what they knew.</b> Notice that none of these are financial problems. They are all governance problems.'},
+ {k:'The response',h:'What India changed afterwards',
+  t:'Satyam is the reason much of India\'s current framework exists. The <b>Companies Act 2013</b> introduced compulsory CSR, stricter rules on independent directors, mandatory audit committees and whistleblower protection. <b>SEBI</b> tightened listing rules on board composition and on deals with related companies. The case is now taught as the standard example of why governance is checked before the numbers are trusted.'}
+];
+var stepBtns=$$('#steps .yr');
+function setStep(s){
+  s=parseInt(s,10);
+  stepBtns.forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.s,10)===s)});
+  $('#axisfill2').style.width=(s/(stepBtns.length-1)*100)+'%';
+  var d=STEP[s];
+  $('#stepPanel').innerHTML='<div class="sh">'+d.k+'</div><h3>'+d.h+'</h3><p>'+d.t+'</p>';
+}
+stepBtns.forEach(function(b){b.onclick=function(){setStep(b.dataset.s)}});
+setStep(0);
+
+fit(); go(fromHash());
+})();
+</script>
+</body>
+</html>
